@@ -110,3 +110,36 @@ nav a {
     color: black;
     font-weight: 800;
 }
+
+/* second page code */
+
+#second-page{
+  padding-left: 3vw;
+  padding-right: 10vw;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  padding-top: 200px;
+  color: #fff;
+  
+}
+
+.elem{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid #888;
+  padding: 3.2vw 3vw;
+  padding-right: 0;
+}
+.elem h1{
+  text-transform: uppercase;
+  opacity: .7;
+  font-size: 7.5vw;
+}
+
+.elemLast {
+  border-bottom: 1px solid #888;
+}
+
