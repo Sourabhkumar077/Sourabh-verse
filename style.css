@@ -19,9 +19,18 @@ body {
   height: 100%;
   width: 100%;
 }
+.circle-ptr{
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  z-index: 999;
+  border-radius: 50%;
+  background-color:white;
+}
 
 #main {
   width: 100%;
+  background-color: black;
 }
 
 .hero {
@@ -29,6 +38,7 @@ body {
   height: 100vh;
   background-color: black;
   color: #fff;
+  position: relative;
 }
 
 nav {
