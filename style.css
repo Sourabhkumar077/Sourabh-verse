@@ -20,6 +20,7 @@ body {
   width: 100%;
 }
 .circle-ptr{
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
   width: 13px;
   height: 13px;
   position: absolute;
@@ -55,6 +56,14 @@ nav a {
   font-size: 1.4rem;
   font-family: "General Sans";
 }
+.bounding{
+  /* background-color: red; */
+  width: fit-content;
+  overflow: hidden;
+}
+.bounding .bounding-text{
+  transform: translateY(100%);
+}
 .heading {
   margin-top: 90px;
 }
@@ -71,6 +80,9 @@ nav a {
 }
 .block-text {
   width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   /* background-color: red; */
 }
 
@@ -81,6 +93,9 @@ nav a {
 }
 
 .small-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     margin-top: 100px;
     padding-right: 50px;
 }
