@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const circle = document.querySelector('.circle-ptr');
         if (circle) {
             document.addEventListener('mousemove', (e) => {
-                circle.style.left = e.clientX+ 5 + 'px';
-                circle.style.top = e.clientY +5+ 'px';
+                circle.style.left = e.clientX+ 'px';
+                circle.style.top = e.clientY + 'px';
             });
         } else {
             console.error('Element with class "circle-ptr" not found.');
@@ -51,3 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
     circleMousePointer();
 
 });
+function circleSqueezeEffect(){
+    // define default values
+    let xScale = 1;
+    let yScale = 1;
+
+
+     let xPrev = 0;
+     let yPrev = 0;
+
+     window.addEventListener('mousemove', (e) => {
+
+        xPrev = e.clientX;
+        yPrev = e.clientY;
+     });
+ 
+}
