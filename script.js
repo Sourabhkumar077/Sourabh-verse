@@ -9,30 +9,30 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Element with id "main" not found.');
     }
 
-    function firstPageAnimation(){
+    function firstPageAnimation() {
         let tl = gsap.timeline();
-        tl.from("nav",{
-            y:"-10",
-            opacity:0,
-            duration:1.7,
-            ease:Expo.easeInOut
+        tl.from("nav", {
+            y: "-10",
+            opacity: 0,
+            duration: 1.7,
+            ease: Expo.easeInOut
         })
 
-        .to(".bounding-text",{
-            y:0,
-            duration:2,
-            delay:-1,
-            ease:Expo.easeInOut,
-            stagger:0.2
-        })
-        .from(".hero-footer",{
-            y:-10,
-            duration:1.5,
-            delay:-1,
-            opacity:0,
-            ease:Expo.easeInOut,
-            // stagger:0.2
-        })
+            .to(".bounding-text", {
+                y: 0,
+                duration: 2,
+                delay: -1,
+                ease: Expo.easeInOut,
+                stagger: 0.2
+            })
+            .from(".hero-footer", {
+                y: -10,
+                duration: 1.5,
+                delay: -1,
+                opacity: 0,
+                ease: Expo.easeInOut,
+                // stagger:0.2
+            })
     }
     firstPageAnimation();
 
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const circle = document.querySelector('.circle-ptr');
         if (circle) {
             document.addEventListener('mousemove', (e) => {
-                circle.style.left = e.clientX+ 'px';
+                circle.style.left = e.clientX + 'px';
                 circle.style.top = e.clientY + 'px';
             });
         } else {
@@ -50,20 +50,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     circleMousePointer();
 
+
+    document.querySelectorAll('.elem').forEach(function (elem) {
+        elem.addEventListener('mousemove', function (dets) {
+            // console.log("hello mouse ji")
+            // console.log(dets);
+            gsap.to(elem.querySelector("img"), {
+                opacity: 1,
+                ease:Power1,
+            })
+        })
+    });
+
+
 });
-function circleSqueezeEffect(){
-    // define default values
-    let xScale = 1;
-    let yScale = 1;
+// function circleSqueezeEffect() {
+//     // define default values
+//     let xScale = 1;
+//     let yScale = 1;
 
 
-     let xPrev = 0;
-     let yPrev = 0;
+//     let xPrev = 0;
+//     let yPrev = 0;
 
-     window.addEventListener('mousemove', (e) => {
+//     window.addEventListener('mousemove', (e) => {
+//         xPrev = e.clientX;
+//         yPrev = e.clientY;
+//     });
+// }
 
-        xPrev = e.clientX;
-        yPrev = e.clientY;
-     });
- 
-}
+
+
