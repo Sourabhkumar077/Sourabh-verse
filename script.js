@@ -105,4 +105,223 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
+
+  // Animate skill bars when they come into view
+  const skillBars = document.querySelectorAll('.skill-level');
+  
+  const animateSkillBars = () => {
+    skillBars.forEach(bar => {
+      const rect = bar.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        bar.classList.add('animate');
+      }
+    });
+  };
+
+  // Initial check
+  animateSkillBars();
+  
+  // Check on scroll
+  window.addEventListener('scroll', animateSkillBars);
+
+  // Cursor Animation
+  const cursor = document.querySelector(".circle-ptr");
+  const main = document.querySelector("#main");
+
+  main.addEventListener("mousemove", function (dets) {
+    gsap.to(cursor, {
+      x: dets.x,
+      y: dets.y,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+  });
+
+  // Add active state to cursor on clickable elements
+  const clickables = document.querySelectorAll("a, button, .elem");
+  clickables.forEach(element => {
+    element.addEventListener("mouseenter", () => {
+      cursor.classList.add("active");
+    });
+    element.addEventListener("mouseleave", () => {
+      cursor.classList.remove("active");
+    });
+  });
+
+  // Scroll Progress Animation
+  const scrollProgress = document.querySelector(".scroll-progress");
+  window.addEventListener("scroll", () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (window.scrollY / totalHeight) * 100;
+    gsap.to(scrollProgress, {
+      scaleX: progress / 100,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+  });
+
+  // Text Animation
+  const bounding = document.querySelectorAll(".bounding");
+  bounding.forEach((element) => {
+    const text = element.querySelector(".bounding-text");
+    const textContent = text.textContent;
+    text.innerHTML = "";
+    
+    for (let i = 0; i < textContent.length; i++) {
+      const span = document.createElement("span");
+      span.textContent = textContent[i];
+      span.style.display = "inline-block";
+      text.appendChild(span);
+    }
+    
+    const spans = text.querySelectorAll("span");
+    gsap.to(spans, {
+      y: 0,
+      stagger: 0.05,
+      duration: 0.5,
+      ease: "back.out(1.7)",
+      delay: 0.2
+    });
+  });
+
+  // Project Hover Animation
+  const elems = document.querySelectorAll(".elem");
+  elems.forEach((elem) => {
+    const img = elem.querySelector("img");
+    const projectInfo = elem.querySelector(".project-info");
+    
+    elem.addEventListener("mouseenter", () => {
+      gsap.to(img, {
+        opacity: 1,
+        scale: 1.05,
+        rotate: 1,
+        duration: 0.4,
+        ease: "power2.out"
+      });
+      
+      gsap.to(projectInfo, {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out"
+      });
+    });
+    
+    elem.addEventListener("mousemove", (e) => {
+      const rect = elem.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const moveX = (x - centerX) * 0.1;
+      const moveY = (y - centerY) * 0.1;
+      
+      gsap.to(img, {
+        x: moveX,
+        y: moveY,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+    
+    elem.addEventListener("mouseleave", () => {
+      gsap.to(img, {
+        opacity: 0,
+        scale: 0.8,
+        rotate: 0,
+        x: 0,
+        y: 0,
+        duration: 0.3,
+        ease: "power2.in"
+      });
+      
+      gsap.to(projectInfo, {
+        opacity: 0,
+        y: 20,
+        duration: 0.3,
+        ease: "power2.in"
+      });
+    });
+  });
+
+  // Smooth Scroll Animation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: {
+            y: target,
+            offsetY: 50
+          },
+          ease: "power2.inOut"
+        });
+      }
+    });
+  });
+
+  // Parallax Effect for About Section
+  const aboutSection = document.querySelector("#about");
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset;
+    const aboutImage = aboutSection.querySelector("img");
+    
+    gsap.to(aboutImage, {
+      y: scrolled * 0.1,
+      rotation: scrolled * 0.02,
+      duration: 0.5,
+      ease: "power2.out"
+    });
+  });
+
+  // Form Animation
+  const form = document.querySelector(".contact-form");
+  const inputs = form.querySelectorAll("input, textarea");
+
+  inputs.forEach(input => {
+    input.addEventListener("focus", () => {
+      gsap.to(input, {
+        scale: 1.02,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+    
+    input.addEventListener("blur", () => {
+      gsap.to(input, {
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+  });
+
+  // Social Links Animation
+  const socialLinks = document.querySelectorAll(".social-links a");
+  socialLinks.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+      gsap.to(link, {
+        y: -5,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+    
+    link.addEventListener("mouseleave", () => {
+      gsap.to(link, {
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+  });
+
+  // Update Locomotive Scroll on window resize
+  window.addEventListener("resize", () => {
+    scroll.update();
+  });
 });
