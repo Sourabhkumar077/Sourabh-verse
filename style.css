@@ -72,7 +72,7 @@ body {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   z-index: -1;
   filter: blur(10px);
   opacity: 0;
@@ -80,30 +80,72 @@ body {
 }
 
 .glow:hover::before {
-  opacity: 1;
+  opacity: 0.5;
 }
 
 /* Project Card Hover Effect */
 .elem {
   position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.elem::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3.2vw 3vw;
+  padding-right: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  height: 30vh;
 }
 
-.elem:hover::before {
-  transform: translateX(100%);
+.elem:hover {
+  background-color: transparent;
+}
+
+.elem img {
+  position: absolute;
+  height: 100%;
+  width: auto;
+  z-index: 999;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+  filter: grayscale(100%);
+  visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.elem:hover img {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  filter: grayscale(0%);
+}
+
+.project-info {
+  position: absolute;
+  right: 3vw;
+  text-align: right;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.elem:hover .project-info {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Floating Animation */
@@ -209,16 +251,21 @@ body {
 /* Contact Form Input Animation */
 .contact-form input,
 .contact-form textarea {
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1vw;
+  color: #fff;
+  font-size: 1vw;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Scroll Progress Indicator */
@@ -228,10 +275,11 @@ body {
   left: 0;
   width: 100%;
   height: 2px;
-  background: rgba(255, 255, 255, 0.3);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
   transform-origin: 0 50%;
   transform: scaleX(0);
   z-index: 1000;
+  transition: transform 0.1s ease;
 }
 
 #main {
@@ -255,8 +303,17 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
   pointer-events: none;
+  animation: gradientShift 15s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 nav {
@@ -309,32 +366,34 @@ nav h4 {
   margin-left: 30px;
   letter-spacing: -2px;
   color: #fff;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
   position: relative;
 }
 
-.heading h1::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.5), transparent);
+.heading h1 span {
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
 #Secondh1 {
   margin-left: 230px;
   color: #fff;
   opacity: 1;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
   position: relative;
   background: none;
   -webkit-background-clip: initial;
   background-clip: initial;
 }
 
-#Secondh1::after {
+#Secondh1 span {
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.heading h1::after {
   content: '';
   position: absolute;
   bottom: -10px;
@@ -475,25 +534,6 @@ nav h4 {
   color: #fff;
 }
 
-.elem {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  border-top: 1px solid #888;
-  padding: 3.2vw 3vw;
-  padding-right: 0;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  overflow: hidden;
-  height: 30vh;
-}
-
-.elem:hover {
-  background-color: #111;
-}
-
 .elem h1 {
   text-transform: uppercase;
   opacity: .7;
@@ -541,27 +581,6 @@ nav h4 {
   transform: translate(-50%, -50%) scale(1);
 }
 
-.project-info {
-  position: absolute;
-  right: 3vw;
-  text-align: right;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.elem:hover .project-info {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 #about {
   background-color: black;
   padding: 120px 5vw;
@@ -582,6 +601,7 @@ nav h4 {
   height: 100%;
   background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
   pointer-events: none;
+  animation: gradientShift 15s ease-in-out infinite;
 }
 
 .about-content {
@@ -610,7 +630,7 @@ nav h4 {
 
 .about-content img:hover {
   filter: grayscale(0%);
-  transform: scale(1.02);
+  transform: scale(1.02) rotate(1deg);
   border-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -825,21 +845,6 @@ nav h4 {
   display: flex;
   flex-direction: column;
   gap: 1vw;
-}
-
-.contact-form input,
-.contact-form textarea {
-  background: transparent;
-  border: 1px solid #fff;
-  padding: 1vw;
-  color: #fff;
-  font-size: 1vw;
-  border-radius: 5px;
-}
-
-.contact-form textarea {
-  height: 150px;
-  resize: none;
 }
 
 .contact-form button {

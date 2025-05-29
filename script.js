@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const scroll = new LocomotiveScroll({
       el: mainElement,
       smooth: true,
+      multiplier: 1,
+      lerp: 0.05
     });
   } else {
     console.error('Element with id "main" not found.');
@@ -126,13 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Cursor Animation
   const cursor = document.querySelector(".circle-ptr");
-  const main = document.querySelector("#main");
-
-  main.addEventListener("mousemove", function (dets) {
+  document.addEventListener("mousemove", (e) => {
     gsap.to(cursor, {
-      x: dets.x,
-      y: dets.y,
-      duration: 0.3,
+      x: e.clientX,
+      y: e.clientY,
+      duration: 0.5,
       ease: "power2.out"
     });
   });
@@ -155,134 +155,121 @@ document.addEventListener("DOMContentLoaded", () => {
     const progress = (window.scrollY / totalHeight) * 100;
     gsap.to(scrollProgress, {
       scaleX: progress / 100,
-      duration: 0.3,
-      ease: "power2.out"
+      duration: 0.1,
+      ease: "none"
     });
   });
 
-  // Text Animation
-  const bounding = document.querySelectorAll(".bounding");
-  bounding.forEach((element) => {
-    const text = element.querySelector(".bounding-text");
+  // Text Animation with Individual Letter Glow
+  const boundingElements = document.querySelectorAll(".bounding");
+  boundingElements.forEach((elem) => {
+    const text = elem.querySelector(".bounding-text");
     const textContent = text.textContent;
     text.innerHTML = "";
     
     for (let i = 0; i < textContent.length; i++) {
       const span = document.createElement("span");
       span.textContent = textContent[i];
+      span.style.opacity = "0";
       span.style.display = "inline-block";
+      span.style.transition = "all 0.3s ease";
       text.appendChild(span);
     }
     
-    const spans = text.querySelectorAll("span");
-    gsap.to(spans, {
-      y: 0,
-      stagger: 0.05,
+    gsap.to(text.children, {
+      opacity: 1,
       duration: 0.5,
-      ease: "back.out(1.7)",
+      stagger: 0.05,
+      ease: "power2.out",
       delay: 0.2
+    });
+
+    // Add hover effect to each letter with reduced glow
+    text.querySelectorAll("span").forEach(letter => {
+      letter.addEventListener("mouseenter", () => {
+        gsap.to(letter, {
+          y: -2,
+          textShadow: "0 0 15px rgba(255, 255, 255, 0.3)",
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      letter.addEventListener("mouseleave", () => {
+        gsap.to(letter, {
+          y: 0,
+          textShadow: "none",
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
     });
   });
 
   // Project Hover Animation
-  const elems = document.querySelectorAll(".elem");
-  elems.forEach((elem) => {
-    const img = elem.querySelector("img");
-    const projectInfo = elem.querySelector(".project-info");
-    
-    elem.addEventListener("mouseenter", () => {
-      gsap.to(img, {
+  const projects = document.querySelectorAll(".elem");
+  projects.forEach((project) => {
+    project.addEventListener("mouseenter", () => {
+      gsap.to(project.querySelector("img"), {
         opacity: 1,
-        scale: 1.05,
-        rotate: 1,
-        duration: 0.4,
+        scale: 1,
+        duration: 0.5,
         ease: "power2.out"
       });
-      
-      gsap.to(projectInfo, {
+      gsap.to(project.querySelector(".project-info"), {
         opacity: 1,
         y: 0,
-        duration: 0.4,
+        duration: 0.5,
         ease: "power2.out"
       });
     });
     
-    elem.addEventListener("mousemove", (e) => {
-      const rect = elem.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const moveX = (x - centerX) * 0.1;
-      const moveY = (y - centerY) * 0.1;
-      
-      gsap.to(img, {
-        x: moveX,
-        y: moveY,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    });
-    
-    elem.addEventListener("mouseleave", () => {
-      gsap.to(img, {
+    project.addEventListener("mouseleave", () => {
+      gsap.to(project.querySelector("img"), {
         opacity: 0,
         scale: 0.8,
-        rotate: 0,
-        x: 0,
-        y: 0,
-        duration: 0.3,
+        duration: 0.5,
         ease: "power2.in"
       });
-      
-      gsap.to(projectInfo, {
+      gsap.to(project.querySelector(".project-info"), {
         opacity: 0,
         y: 20,
-        duration: 0.3,
+        duration: 0.5,
         ease: "power2.in"
       });
     });
   });
 
-  // Smooth Scroll Animation
+  // Smooth Scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        gsap.to(window, {
-          duration: 1,
-          scrollTo: {
-            y: target,
-            offsetY: 50
-          },
-          ease: "power2.inOut"
-        });
-      }
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+          y: target,
+          offsetY: 50
+        },
+        ease: "power2.inOut"
+      });
     });
   });
 
-  // Parallax Effect for About Section
-  const aboutSection = document.querySelector("#about");
+  // Parallax Effect
   window.addEventListener("scroll", () => {
+    const aboutImage = document.querySelector(".about-content img");
     const scrolled = window.pageYOffset;
-    const aboutImage = aboutSection.querySelector("img");
-    
     gsap.to(aboutImage, {
-      y: scrolled * 0.1,
-      rotation: scrolled * 0.02,
+      y: scrolled * 0.2,
       duration: 0.5,
       ease: "power2.out"
     });
   });
 
   // Form Animation
-  const form = document.querySelector(".contact-form");
-  const inputs = form.querySelectorAll("input, textarea");
-
-  inputs.forEach(input => {
+  const formInputs = document.querySelectorAll(".contact-form input, .contact-form textarea");
+  formInputs.forEach(input => {
     input.addEventListener("focus", () => {
       gsap.to(input, {
         scale: 1.02,
@@ -320,8 +307,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Update Locomotive Scroll on window resize
-  window.addEventListener("resize", () => {
+  // Update scroll on window resize
+  window.addEventListener('resize', () => {
     scroll.update();
   });
 });
