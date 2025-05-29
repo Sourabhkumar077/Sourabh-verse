@@ -20,9 +20,9 @@ body {
   width: 100%;
 }
 .circle-ptr {
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
-  width: 20px;
-  height: 20px;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.2s;
+  width: 15px;
+  height: 15px;
   position: fixed;
   z-index: 9999;
   border-radius: 50%;
@@ -31,11 +31,12 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.3);
   pointer-events: none;
   mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
 }
 
 .circle-ptr.active {
-  transform: scale(1.5);
-  background-color: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%) scale(1.3);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 /* Professional Text Effect */
@@ -367,6 +368,9 @@ nav h4 {
   letter-spacing: -2px;
   color: #fff;
   position: relative;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
 }
 
 .heading h1 span {
@@ -414,33 +418,47 @@ nav h4 {
 .block-text h5 {
   text-align: right;
   text-transform: uppercase;
-  font-size: 16px;
-  letter-spacing: 3px;
-  opacity: 0.9;
-  font-weight: 500;
-  margin-bottom: 10px;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  word-spacing: 4px;
+  opacity: 0.85;
+  font-weight: 400;
+  margin-bottom: 8px;
   color: #fff;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.block-text h5:hover {
+  transform: translateY(-1px);
+  opacity: 1;
+  letter-spacing: 2px;
+  word-spacing: 6px;
 }
 
 .small-heading {
-  display: flex;
+    display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
+    margin-top: 100px;
   gap: 20px;
 }
 
 .small-heading h5 {
   text-align: center;
   font-size: 0.8vw;
-  text-transform: uppercase;
+    text-transform: uppercase;
   opacity: 0.9;
   letter-spacing: 0.5px;
   font-weight: 500;
   color: #fff;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
   white-space: nowrap;
 }
 
@@ -453,11 +471,11 @@ nav h4 {
 }
 
 .hero-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 100%;
   bottom: 5%;
   padding: 0 40px;
   z-index: 10;
@@ -465,9 +483,9 @@ nav h4 {
 }
 
 .hero-footer a {
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
   opacity: 0.9;
   font-weight: 500;
   letter-spacing: 1px;
@@ -480,19 +498,19 @@ nav h4 {
 }
 
 .hero-footer .icon-set{
-  display: flex;
-  gap: 5px;
+    display: flex;
+    gap: 5px;
 }
 .hero-footer .circle{
-  width: 25px;
-  height: 25px;
-  background-color: #888;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items:center ;
-  color: black;
-  font-weight: 800;
+    width: 25px;
+    height: 25px;
+    background-color: #888;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    color: black;
+    font-weight: 800;
 }
 
 /* second page code */
@@ -720,51 +738,101 @@ nav h4 {
   background-color: black;
   padding: 100px 3vw;
   color: #fff;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+#skills::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  animation: gradientShift 15s ease-in-out infinite;
 }
 
 .skills-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 4vw;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3vw;
   margin-top: 4vw;
+  position: relative;
+  z-index: 2;
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2vw;
+}
+
+.skill-category {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 2.5vw;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-category:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .skill-category h3 {
-  font-size: 2vw;
+  font-size: 1.3vw;
   text-transform: uppercase;
-  margin-bottom: 2vw;
-  opacity: 0.8;
+  margin-bottom: 1.5vw;
+  opacity: 0.9;
   font-family: "General Sans Medium";
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 10px;
 }
 
 .skill-items {
   display: flex;
   flex-direction: column;
-  gap: 1.5vw;
+  gap: 1.2vw;
+  flex: 1;
 }
 
 .skill-item {
   display: flex;
   flex-direction: column;
-  gap: 0.5vw;
+  gap: 0.4vw;
 }
 
 .skill-item span {
-  font-size: 1vw;
-  opacity: 0.7;
+  font-size: 0.9vw;
+  opacity: 0.8;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .skill-bar {
   width: 100%;
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.1);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
   overflow: hidden;
+  position: relative;
 }
 
 .skill-level {
   height: 100%;
-  background-color: #fff;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
@@ -775,17 +843,42 @@ nav h4 {
   transform: scaleX(1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .skills-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2vw;
   }
   
   .skill-category h3 {
-    font-size: 24px;
+    font-size: 1.5vw;
   }
   
   .skill-item span {
-    font-size: 16px;
+    font-size: 1vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .skill-category {
+    padding: 20px;
+  }
+  
+  .skill-category h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .skill-item span {
+    font-size: 14px;
+  }
+  
+  .skill-items {
+    gap: 12px;
   }
 }
 
@@ -896,8 +989,8 @@ nav h4 {
   }
 
   .block-text h5 {
-    font-size: 14px;
-    letter-spacing: 2px;
+    font-size: 11px;
+    letter-spacing: 1px;
   }
 
   .small-heading {

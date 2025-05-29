@@ -40,11 +40,33 @@ document.addEventListener("DOMContentLoaded", () => {
   function circleMousePointer() {
     const circle = document.querySelector(".circle-ptr");
     if (circle) {
-      console.log("Circle pointer element found");
+      let mouseX = 0;
+      let mouseY = 0;
+      let circleX = 0;
+      let circleY = 0;
+
       document.addEventListener("mousemove", (e) => {
-        circle.style.left = e.pageX + "px";
-        circle.style.top = e.pageY + "px";
+        mouseX = e.clientX;
+        mouseY = e.clientY;
       });
+
+      function animate() {
+        // Calculate the distance between mouse and circle
+        const dx = mouseX - circleX;
+        const dy = mouseY - circleY;
+        
+        // Smooth movement using lerp
+        circleX += dx * 0.2;
+        circleY += dy * 0.2;
+        
+        // Update circle position
+        circle.style.left = circleX + "px";
+        circle.style.top = circleY + "px";
+        
+        requestAnimationFrame(animate);
+      }
+
+      animate();
     } else {
       console.error('Element with class "circle-ptr" not found.');
     }
@@ -108,23 +130,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Animate skill bars when they come into view
-  const skillBars = document.querySelectorAll('.skill-level');
-  
-  const animateSkillBars = () => {
-    skillBars.forEach(bar => {
-      const rect = bar.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        bar.classList.add('animate');
-      }
+  // Skill Bar Animation
+  function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-level');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const level = entry.target.getAttribute('data-level');
+          entry.target.style.transform = `scaleX(${level / 100})`;
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.2
     });
-  };
 
-  // Initial check
-  animateSkillBars();
-  
-  // Check on scroll
-  window.addEventListener('scroll', animateSkillBars);
+    skillBars.forEach(bar => {
+      observer.observe(bar);
+    });
+  }
+
+  // Initialize skill bar animations
+  document.addEventListener('DOMContentLoaded', () => {
+    animateSkillBars();
+  });
 
   // Cursor Animation
   const cursor = document.querySelector(".circle-ptr");
