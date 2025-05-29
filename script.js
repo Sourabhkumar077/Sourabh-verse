@@ -342,4 +342,99 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('resize', () => {
     scroll.update();
   });
+
+  // Timeline Animation
+  function initTimeline() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    timelineItems.forEach((item, index) => {
+      gsap.from(item, {
+        scrollTrigger: {
+          trigger: item,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        delay: index * 0.2,
+        ease: "power2.out"
+      });
+    });
+  }
+
+  // Tech Stack Animation
+  function initTechStack() {
+    const techIcons = document.querySelectorAll('.tech-icon');
+    
+    techIcons.forEach((icon, index) => {
+      gsap.from(icon, {
+        scrollTrigger: {
+          trigger: icon,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        },
+        scale: 0,
+        opacity: 0,
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: "back.out(1.7)"
+      });
+    });
+  }
+
+  // Fun Facts Animation
+  function initFunFacts() {
+    const factCards = document.querySelectorAll('.fact-card');
+    
+    factCards.forEach((card, index) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        },
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        delay: index * 0.15,
+        ease: "power2.out"
+      });
+      
+      // Animate numbers
+      const number = card.querySelector('h3');
+      const targetNumber = parseInt(number.textContent);
+      gsap.to(number, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        },
+        textContent: targetNumber,
+        duration: 2,
+        delay: index * 0.15,
+        snap: { textContent: 1 },
+        ease: "power1.inOut"
+      });
+    });
+  }
+
+  // Initialize all animations
+  document.addEventListener('DOMContentLoaded', () => {
+    // Existing animations
+    initCursor();
+    initScrollProgress();
+    initTextAnimation();
+    initProjectHover();
+    initSmoothScroll();
+    initParallax();
+    initFormAnimations();
+    initSocialLinks();
+    initLocomotiveScroll();
+    
+    // New section animations
+    initTimeline();
+    initTechStack();
+    initFunFacts();
+  });
 });
