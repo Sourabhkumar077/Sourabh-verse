@@ -1,10 +1,10 @@
 @font-face {
   font-family: r;
-  src: url ("./Fonts/GeneralSans-Regular.ttf");
+  src: url("./Fonts/GeneralSans-Regular.ttf");
 }
 @font-face {
   font-family: m;
-  src: url ("./Fonts/GeneralSans-Medium.ttf");
+  src: url("./Fonts/GeneralSans-Medium.ttf");
 }
 
 * {
@@ -138,18 +138,30 @@ nav a {
 
 /* second page code */
 
-#second-page{
+.page-heading {
+  padding: 0 3vw;
+  margin-bottom: 4vw;
+}
+
+.page-heading h2 {
+  font-size: 4vw;
+  text-transform: uppercase;
+  opacity: 0.7;
+  font-family: "General Sans Medium";
+  letter-spacing: 2px;
+}
+
+#second-page {
   padding-left: 3vw;
   padding-right: 10vw;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   background-color: black;
-  padding-top: 200px;
+  padding-top: 100px;
   color: #fff;
-  
 }
 
-.elem{
+.elem {
   position: relative;
   display: flex;
   align-items: center;
@@ -158,21 +170,79 @@ nav a {
   border-top: 1px solid #888;
   padding: 3.2vw 3vw;
   padding-right: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  overflow: hidden;
+  height: 30vh;
 }
-.elem h1{
+
+.elem:hover {
+  background-color: #111;
+}
+
+.elem h1 {
   text-transform: uppercase;
   opacity: .7;
   font-size: 7.5vw;
+  transition: opacity 0.3s ease;
+}
+
+.elem:hover h1 {
+  opacity: 1;
+}
+
+.elem h5 {
+  font-size: 1vw;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.elem:hover h5 {
+  opacity: 1;
 }
 
 .elemLast {
   border-bottom: 1px solid #888;
 }
-.elem img{
+
+.elem img {
   position: absolute;
-  height: 140%;
+  height: 100%;
+  width: auto;
   z-index: 999;
-  display: none;
+  opacity: 0;
+  transition: none;
+  pointer-events: none;
+  filter: grayscale(100%);
+  visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.elem:hover img {
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.project-info {
+  position: absolute;
+  right: 3vw;
+  text-align: right;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.elem:hover .project-info {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #about{
