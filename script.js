@@ -437,4 +437,57 @@ document.addEventListener("DOMContentLoaded", () => {
     initTechStack();
     initFunFacts();
   });
+
+  // Navbar functionality
+  const navbar = document.querySelector('.navbar');
+  const navToggle = document.querySelector('.nav-toggle');
+  const navExpand = document.querySelector('.nav-expand');
+  const themeToggle = document.querySelector('.theme-toggle');
+
+  // Scroll effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navExpand.classList.toggle('active');
+    document.body.style.overflow = navExpand.classList.contains('active') ? 'hidden' : '';
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navExpand.contains(e.target) && !navToggle.contains(e.target) && navExpand.classList.contains('active')) {
+      navToggle.classList.remove('active');
+      navExpand.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu when clicking on a link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navExpand.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Theme toggle animation
+  themeToggle.addEventListener('click', () => {
+    themeToggle.classList.toggle('active');
+    const icon = themeToggle.querySelector('i');
+    if (themeToggle.classList.contains('active')) {
+      icon.classList.remove('ri-sun-line');
+      icon.classList.add('ri-moon-line');
+    } else {
+      icon.classList.remove('ri-moon-line');
+      icon.classList.add('ri-sun-line');
+    }
+  });
 });
