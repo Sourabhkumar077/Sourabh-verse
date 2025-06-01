@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="hero-footer">
-        <a href="#about" class="creative-button">Scroll to know more <i class="ri-arrow-down-line"></i></a>
+        <a href="#about" class="creative-button"><i class="ri-arrow-down-line"></i></a>
       </div>
     </div>
 
@@ -307,31 +307,98 @@
       <div class="page-heading">
         <h2 class="gradient-text">Projects</h2>
       </div>
-      <div class="elem">
-        <img src="./images/lucid-motors.png" alt="Lucid Motors Project" />
-        <h1 class="glow">Wanderlust</h1>
-        <div class="project-info">
-          <h5>2024</h5>
-          <p class="gradient-text">Full Stack Development</p>
-          <p>React • Node.js • MongoDB</p>
+      <div class="projects-container">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./images/lucid-motors.png" alt="Wanderlust Project" />
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank"><i class="ri-github-fill"></i></a>
+                <a href="#" class="project-link" target="_blank"><i class="ri-external-link-fill"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="glow">Wanderlust</h3>
+            <p class="project-description">A full-stack travel planning application that helps users discover and plan their perfect trips. Features include interactive maps, itinerary planning, and social sharing.</p>
+            <div class="project-tech">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>MongoDB</span>
+              <span>Express</span>
+              <span>Mapbox API</span>
+            </div>
+            <div class="project-features">
+              <ul>
+                <li>Interactive trip planning</li>
+                <li>Real-time weather updates</li>
+                <li>Social sharing capabilities</li>
+                <li>User authentication</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="elem">
-        <img src="./images/baron-capital.png" alt="Baron Capital Project" />
-        <h1 class="glow">sens ai</h1>
-        <div class="project-info">
-          <h5>2024</h5>
-          <p class="gradient-text">Web Application</p>
-          <p>Vue.js • Express • PostgreSQL</p>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./images/baron-capital.png" alt="Sens AI Project" />
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank"><i class="ri-github-fill"></i></a>
+                <a href="#" class="project-link" target="_blank"><i class="ri-external-link-fill"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="glow">Sens AI</h3>
+            <p class="project-description">An AI-powered web application that analyzes and provides insights on user data. Features include sentiment analysis, trend prediction, and customizable dashboards.</p>
+            <div class="project-tech">
+              <span>Vue.js</span>
+              <span>Express</span>
+              <span>PostgreSQL</span>
+              <span>TensorFlow.js</span>
+              <span>D3.js</span>
+            </div>
+            <div class="project-features">
+              <ul>
+                <li>Real-time data analysis</li>
+                <li>Interactive visualizations</li>
+                <li>Custom AI models</li>
+                <li>API integration</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="elem elemLast">
-        <img src="./images/nfl.png" alt="NFL Project" />
-        <h1 class="glow">Salary prediction</h1>
-        <div class="project-info">
-          <h5>2024</h5>
-          <p class="gradient-text">Mobile App Development</p>
-          <p>React Native • Firebase</p>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./images/nfl.png" alt="Salary Prediction Project" />
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link" target="_blank"><i class="ri-github-fill"></i></a>
+                <a href="#" class="project-link" target="_blank"><i class="ri-external-link-fill"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="glow">Salary Prediction</h3>
+            <p class="project-description">A mobile application that predicts salary ranges based on various factors. Features include machine learning models, career path suggestions, and market trend analysis.</p>
+            <div class="project-tech">
+              <span>React Native</span>
+              <span>Firebase</span>
+              <span>Python</span>
+              <span>Scikit-learn</span>
+              <span>Redux</span>
+            </div>
+            <div class="project-features">
+              <ul>
+                <li>ML-based predictions</li>
+                <li>Offline functionality</li>
+                <li>Career insights</li>
+                <li>Data visualization</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -351,10 +418,10 @@
             <a href="#"><i class="ri-twitter-fill"></i> Twitter</a>
           </div>
         </div>
-        <form class="contact-form">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea placeholder="Your Message" required></textarea>
+        <form class="contact-form" id="contact-form">
+          <input type="text" id="user_name" name="user_name" placeholder="Your Name" required />
+          <input type="email" id="user_email" name="user_email" placeholder="Your Email" required />
+          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
           <button type="submit" class="creative-button">Send Message</button>
         </form>
       </div>
@@ -376,6 +443,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/EasePack.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="script.js"></script>
 </body>
 

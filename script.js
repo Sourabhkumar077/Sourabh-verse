@@ -488,4 +488,59 @@ document.addEventListener("DOMContentLoaded", () => {
       icon.classList.add('ri-sun-line');
     }
   });
+
+  // Initialize EmailJS
+  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+
+  // Contact Form Submission
+  const contactForm = document.getElementById('contact-form');
+  
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+
+    // Get form data
+    const formData = {
+      user_name: document.getElementById('user_name').value,
+      user_email: document.getElementById('user_email').value,
+      message: document.getElementById('message').value
+    };
+
+    // Send email using EmailJS
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+      .then(function() {
+        // Show success message
+        submitButton.textContent = 'Message Sent!';
+        submitButton.style.background = 'rgba(0, 255, 0, 0.1)';
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          submitButton.textContent = originalText;
+          submitButton.style.background = '';
+          submitButton.disabled = false;
+        }, 3000);
+      })
+      .catch(function(error) {
+        // Show error message
+        submitButton.textContent = 'Error! Try Again';
+        submitButton.style.background = 'rgba(255, 0, 0, 0.1)';
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          submitButton.textContent = originalText;
+          submitButton.style.background = '';
+          submitButton.disabled = false;
+        }, 3000);
+        
+        console.error('Error:', error);
+      });
+  });
 });
