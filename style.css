@@ -21,23 +21,26 @@ body {
   background-color: black;
 }
 .circle-ptr {
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.2s;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
   width: 15px;
   height: 15px;
   position: fixed;
   z-index: 9999;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(2px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: #fff;
   pointer-events: none;
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
 }
 
 .circle-ptr.active {
-  transform: translate(-50%, -50%) scale(1.3);
-  background-color: rgba(255, 255, 255, 0.15);
+  transform: translate(-50%, -50%) scale(1.2);
+  background-color: #fff;
+}
+
+.circle-ptr.moving {
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 0.05s;
 }
 
 /* Professional Text Effect */

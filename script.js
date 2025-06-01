@@ -37,41 +37,61 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   firstPageAnimation();
 
-  function circleMousePointer() {
-    const circle = document.querySelector(".circle-ptr");
-    if (circle) {
-      let mouseX = 0;
-      let mouseY = 0;
-      let circleX = 0;
-      let circleY = 0;
+  // Cursor Animation
+  const cursor = document.querySelector(".circle-ptr");
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  let isMoving = false;
+  let moveTimeout;
 
-      document.addEventListener("mousemove", (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Add moving class
+    cursor.classList.add("moving");
+    isMoving = true;
+    
+    // Clear previous timeout
+    clearTimeout(moveTimeout);
+    
+    // Set new timeout to remove moving class
+    moveTimeout = setTimeout(() => {
+      cursor.classList.remove("moving");
+      isMoving = false;
+    }, 100);
+  });
 
-      function animate() {
-        // Calculate the distance between mouse and circle
-        const dx = mouseX - circleX;
-        const dy = mouseY - circleY;
-        
-        // Smooth movement using lerp
-        circleX += dx * 0.2;
-        circleY += dy * 0.2;
-        
-        // Update circle position
-        circle.style.left = circleX + "px";
-        circle.style.top = circleY + "px";
-        
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-    } else {
-      console.error('Element with class "circle-ptr" not found.');
-    }
+  function animateCursor() {
+    // Calculate distance between mouse and cursor
+    const dx = mouseX - cursorX;
+    const dy = mouseY - cursorY;
+    
+    // Smooth movement using lerp
+    cursorX += dx * 0.2;
+    cursorY += dy * 0.2;
+    
+    // Update cursor position
+    cursor.style.left = cursorX + "px";
+    cursor.style.top = cursorY + "px";
+    
+    requestAnimationFrame(animateCursor);
   }
-  circleMousePointer();
+
+  animateCursor();
+
+  // Add active state to cursor on clickable elements
+  const clickables = document.querySelectorAll("a, button, .elem");
+  clickables.forEach(element => {
+    element.addEventListener("mouseenter", () => {
+      cursor.classList.add("active");
+    });
+    element.addEventListener("mouseleave", () => {
+      cursor.classList.remove("active");
+    });
+  });
 
   document.querySelectorAll(".elem").forEach(function (elem) {
     let img = elem.querySelector("img");
@@ -155,28 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize skill bar animations
   document.addEventListener('DOMContentLoaded', () => {
     animateSkillBars();
-  });
-
-  // Cursor Animation
-  const cursor = document.querySelector(".circle-ptr");
-  document.addEventListener("mousemove", (e) => {
-    gsap.to(cursor, {
-      x: e.clientX,
-      y: e.clientY,
-      duration: 0.5,
-      ease: "power2.out"
-    });
-  });
-
-  // Add active state to cursor on clickable elements
-  const clickables = document.querySelectorAll("a, button, .elem");
-  clickables.forEach(element => {
-    element.addEventListener("mouseenter", () => {
-      cursor.classList.add("active");
-    });
-    element.addEventListener("mouseleave", () => {
-      cursor.classList.remove("active");
-    });
   });
 
   // Scroll Progress Animation
