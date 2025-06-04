@@ -417,6 +417,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Fun Facts Counter Animation
+  function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-target'));
+    const duration = 2000; // 2 seconds
+    const step = target / (duration / 16); // 60fps
+    let current = 0;
+
+    const updateCounter = () => {
+      current += step;
+      if (current < target) {
+        element.textContent = Math.floor(current);
+        requestAnimationFrame(updateCounter);
+      } else {
+        element.textContent = target;
+      }
+    };
+
+    updateCounter();
+  }
+
+  // Intersection Observer for Fun Facts
+  const factCards = document.querySelectorAll('.fact-card');
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px'
+  };
+
+  const factObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll('.counter');
+        counters.forEach(counter => {
+          animateCounter(counter);
+        });
+        factObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  factCards.forEach(card => {
+    factObserver.observe(card);
+  });
+
   // Initialize all animations
   document.addEventListener('DOMContentLoaded', () => {
     // Existing animations
