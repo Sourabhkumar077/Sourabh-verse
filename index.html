@@ -466,17 +466,66 @@
         <div class="contact-info">
           <h3 class="glow">Let's create something amazing together</h3>
           <p class="creative-text">Feel free to reach out for collaborations or just a friendly hello</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <i class="ri-mail-line"></i>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <p>sourabhkumar077@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="ri-map-pin-line"></i>
+              <div class="contact-text">
+                <h4>Location</h4>
+                <p>Narmadpuram, Madhya Pradesh, India</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="ri-time-line"></i>
+              <div class="contact-text">
+                <h4>Availability</h4>
+                <p>Available for freelance & full-time</p>
+              </div>
+            </div>
+          </div>
           <div class="social-links">
-            <a href="https://github.com/Sourabhkumar077"><i class="ri-github-fill"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/sourabh-kumar-mahuvar-b62404253/"><i class="ri-linkedin-fill"></i> LinkedIn</a>
-            <a href="#"><i class="ri-twitter-fill"></i> Twitter</a>
+            <a href="https://github.com/Sourabhkumar077" class="social-link" target="_blank">
+              <i class="ri-github-fill"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/sourabh-kumar-mahuvar-b62404253/" class="social-link" target="_blank">
+              <i class="ri-linkedin-fill"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="#" class="social-link" target="_blank">
+              <i class="ri-twitter-fill"></i>
+              <span>Twitter</span>
+            </a>
           </div>
         </div>
         <form class="contact-form" id="contact-form">
-          <input type="text" id="user_name" name="user_name" placeholder="Your Name" required />
-          <input type="email" id="user_email" name="user_email" placeholder="Your Email" required />
-          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-          <button type="submit" class="creative-button">Send Message</button>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" id="user_name" name="user_name" required />
+              <label for="user_name">Your Name</label>
+              <i class="ri-user-line"></i>
+            </div>
+            <div class="input-group">
+              <input type="email" id="user_email" name="user_email" required />
+              <label for="user_email">Your Email</label>
+              <i class="ri-mail-line"></i>
+            </div>
+          </div>
+          <div class="input-group">
+            <textarea id="message" name="message" required></textarea>
+            <label for="message">Your Message</label>
+            <i class="ri-message-2-line"></i>
+          </div>
+          <button type="submit" class="creative-button">
+            <span>Send Message</span>
+            <i class="ri-send-plane-fill"></i>
+          </button>
         </form>
       </div>
     </div>
