@@ -8,6 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
       multiplier: 1,
       lerp: 0.05
     });
+
+    // Add navbar click functionality
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        scroll.scrollTo(targetSection);
+      });
+    });
   } else {
     console.error('Element with id "main" not found.');
   }
