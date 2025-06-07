@@ -542,58 +542,73 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initialize EmailJS
-  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+  // EmailJS Configuration
+  (function() {
+    emailjs.init("fgBkw0DpnD_Ow-6ZI");
+    console.log("EmailJS initialized");
+  })();
 
-  // Contact Form Submission
-  const contactForm = document.getElementById('contact-form');
-  
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+  // Contact Form Handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
     
-    // Show loading state
-    const submitButton = this.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Sending...';
-    submitButton.disabled = true;
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting traditionally
+            
+            // Get form data
+            const name = document.getElementById('user_name').value;
+            const email = document.getElementById('user_email').value;
+            const message = document.getElementById('message').value;
 
-    // Get form data
-    const formData = {
-      user_name: document.getElementById('user_name').value,
-      user_email: document.getElementById('user_email').value,
-      message: document.getElementById('message').value
-    };
+            console.log("Form submitted with:", { name, email, message });
 
-    // Send email using EmailJS
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
-      .then(function() {
-        // Show success message
-        submitButton.textContent = 'Message Sent!';
-        submitButton.style.background = 'rgba(0, 255, 0, 0.1)';
-        
-        // Reset form
-        contactForm.reset();
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-          submitButton.textContent = originalText;
-          submitButton.style.background = '';
-          submitButton.disabled = false;
-        }, 3000);
-      })
-      .catch(function(error) {
-        // Show error message
-        submitButton.textContent = 'Error! Try Again';
-        submitButton.style.background = 'rgba(255, 0, 0, 0.1)';
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-          submitButton.textContent = originalText;
-          submitButton.style.background = '';
-          submitButton.disabled = false;
-        }, 3000);
-        
-        console.error('Error:', error);
-      });
+            // Show loading state
+            const submitButton = contactForm.querySelector('.creative-button');
+            const originalButtonHTML = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="ri-loader-4-line"></i> Sending...';
+            submitButton.disabled = true;
+
+            // Send email using EmailJS
+            emailjs.send("service_nloc4hp", "template_6qw2lg1", {
+                from_name: name,
+                from_email: email,
+                message: message,
+                to_name: "Sourabh Kumar",
+                reply_to: email,
+            })
+            .then(function(response) {
+                console.log("Email sent successfully:", response);
+                // Show success message
+                submitButton.innerHTML = '<i class="ri-check-line"></i> Sent Successfully!';
+                submitButton.style.backgroundColor = '#4CAF50';
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.innerHTML = originalButtonHTML;
+                    submitButton.style.backgroundColor = '';
+                    submitButton.disabled = false;
+                }, 3000);
+            })
+            .catch(function(error) {
+                console.error("EmailJS error details:", error);
+                // Show error message
+                submitButton.innerHTML = '<i class="ri-error-warning-line"></i> Failed to Send';
+                submitButton.style.backgroundColor = '#f44336';
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.innerHTML = originalButtonHTML;
+                    submitButton.style.backgroundColor = '';
+                    submitButton.disabled = false;
+                }, 3000);
+            });
+        });
+    } else {
+        console.error("Contact form not found!");
+    }
   });
 });

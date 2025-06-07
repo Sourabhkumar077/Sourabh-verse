@@ -511,8 +511,8 @@
             </a>
           </div>
         </div>
-        <form class="contact-form" id="contact-form">
-          <div class="form-group">
+        <div class="contact-form">
+          <form id="contact-form">
             <div class="input-group">
               <input type="text" id="user_name" name="user_name" required />
               <label for="user_name">Your Name</label>
@@ -523,17 +523,17 @@
               <label for="user_email">Your Email</label>
               <i class="ri-mail-line"></i>
             </div>
-          </div>
-          <div class="input-group">
-            <textarea id="message" name="message" required></textarea>
-            <label for="message">Your Message</label>
-            <i class="ri-message-2-line"></i>
-          </div>
-          <button type="submit" class="creative-button">
-            <span>Send Message</span>
-            <i class="ri-send-plane-fill"></i>
-          </button>
-        </form>
+            <div class="input-group">
+              <textarea id="message" name="message" required></textarea>
+              <label for="message">Your Message</label>
+              <i class="ri-message-2-line"></i>
+            </div>
+            <button type="submit" class="creative-button">
+              <span>Send Message</span>
+              <i class="ri-send-plane-fill"></i>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
 
@@ -550,10 +550,9 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/EasePack.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
   <script src="script.js"></script>
 </body>
 
