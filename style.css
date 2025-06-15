@@ -24,17 +24,17 @@ body {
 
 /* Modern Color Variables */
 :root {
-  --primary-bg: #1A1B1E;
-  --secondary-bg: #2C2D31;
-  --accent-color: #FF3366;
-  --accent-color-hover: #FF1A4F;
+  --primary-bg: #0A0A0A;
+  --secondary-bg: #1A1A1A;
+  --accent-color: #DC2626;
+  --accent-color-hover: #B91C1C;
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --gradient-1: linear-gradient(135deg, #FF3366 0%, #FF6B6B 100%);
-  --gradient-2: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
-  --glass-bg: rgba(44, 45, 49, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --card-shadow: 0 8px 32px rgba(255, 51, 102, 0.15);
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --gradient-1: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+  --gradient-2: linear-gradient(135deg, #EF4444 0%, #FCA5A5 100%);
+  --glass-bg: rgba(26, 26, 26, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --card-shadow: 0 4px 6px rgba(220, 38, 38, 0.1);
 }
 
 .circle-ptr {
@@ -120,15 +120,15 @@ body {
   transition: all 0.3s ease;
   overflow: hidden;
   height: 30vh;
-  background: var(--glass-bg);
+  background: var(--secondary-bg);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(5px);
 }
 
 .elem:hover {
   background: var(--secondary-bg);
-  transform: translateY(-5px);
-  box-shadow: var(--card-shadow);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
 }
 
 .elem img {
@@ -206,7 +206,7 @@ body {
 .creative-button {
   position: relative;
   padding: 12px 30px;
-  background: var(--glass-bg);
+  background: var(--secondary-bg);
   color: var(--text-primary);
   font-size: 14px;
   text-transform: uppercase;
@@ -237,10 +237,10 @@ body {
 }
 
 .creative-button:hover {
-  background: var(--accent-color);
+  background: var(--secondary-bg);
   border-color: var(--accent-color);
+  color: var(--accent-color);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
 }
 
 .creative-button:hover::before {
@@ -291,7 +291,7 @@ body {
 /* Contact Form Input Animation */
 .contact-form input,
 .contact-form textarea {
-  background: var(--glass-bg);
+  background: var(--secondary-bg);
   border: 1px solid var(--glass-border);
   padding: 1vw;
   color: var(--text-primary);
@@ -304,7 +304,7 @@ body {
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: var(--accent-color);
-  box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+  outline: none;
 }
 
 /* Scroll Progress Indicator */
@@ -313,8 +313,8 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: var(--gradient-1);
+  height: 2px;
+  background: var(--accent-color);
   transform-origin: 0 50%;
   transform: scaleX(0);
   z-index: 1000;
@@ -375,7 +375,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--glass-bg);
+  background: var(--secondary-bg);
   backdrop-filter: blur(10px);
   z-index: 1000;
   transition: all 0.3s ease;
@@ -1114,7 +1114,7 @@ body {
 .timeline-content {
   width: 45%;
   padding: 30px;
-  background: var(--glass-bg);
+  background: var(--secondary-bg);
   border-radius: 20px;
   backdrop-filter: blur(5px);
   border: 1px solid var(--glass-border);
@@ -1153,10 +1153,9 @@ body {
 }
 
 .timeline-content:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: var(--secondary-bg);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
 }
 
 .timeline-content h3 {
@@ -1276,9 +1275,9 @@ body {
 }
 
 .tech-category:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  background: var(--secondary-bg);
+  border-color: var(--accent-color);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -1311,9 +1310,10 @@ body {
 }
 
 .tech-icon:hover {
-  transform: translateY(-5px);
-  background: var(--accent-color);
-  box-shadow: var(--card-shadow);
+  transform: translateY(-2px);
+  background: var(--secondary-bg);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .tech-icon i {
@@ -1472,9 +1472,9 @@ body {
 }
 
 .fact-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px) scale(1.02);
+  background: var(--secondary-bg);
+  border-color: var(--accent-color);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -1648,8 +1648,8 @@ body {
 
 .elem:hover {
   background: var(--secondary-bg);
-  transform: translateY(-5px);
-  box-shadow: var(--card-shadow);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
 }
 
 .elem img {
@@ -1770,9 +1770,9 @@ body {
 }
 
 .contact-info:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  background: var(--secondary-bg);
+  border-color: var(--accent-color);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -1854,9 +1854,10 @@ body {
 }
 
 .social-link:hover {
-  background: var(--accent-color);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+  background: var(--secondary-bg);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-2px);
 }
 
 .social-link i {
@@ -1878,9 +1879,9 @@ body {
 }
 
 .contact-form:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  background: var(--secondary-bg);
+  border-color: var(--accent-color);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -1968,10 +1969,10 @@ body {
 }
 
 .creative-button:hover {
-  background: var(--accent-color);
+  background: var(--secondary-bg);
   border-color: var(--accent-color);
+  color: var(--accent-color);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
 }
 
 .creative-button i {
@@ -2029,15 +2030,15 @@ body {
 }
 
 .project-card {
-  background: var(--glass-bg);
+  background: var(--secondary-bg);
   border-radius: 15px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--card-shadow);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
 }
 
 .project-image {
@@ -2088,7 +2089,7 @@ body {
 }
 
 .project-link:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   color: var(--accent-color);
 }
 
