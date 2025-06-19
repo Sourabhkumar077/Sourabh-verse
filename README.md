@@ -1,103 +1,49 @@
-# Sourabh Kumar's Portfolio Website
+# Sourabh Kumar — Personal Portfolio
 
-A modern, responsive portfolio website showcasing my skills, projects, and journey as a Full Stack Developer. Built with a focus on performance, accessibility, and user experience.
+> **Note:** This is my personal portfolio project. Please do not copy, clone, or reuse any part of this code or design. This site is a unique reflection of my journey, skills, and personality.
 
-![Portfolio Preview](./images/portfolio-preview.png)
+---
 
-## 🌟 Features
+## 🚀 About This Project
 
-- **Modern Design**: Clean and minimalist design with smooth animations
-- **Responsive Layout**: Fully responsive design that works on all devices
-- **Interactive Elements**: Engaging animations and transitions
-- **Project Showcase**: Detailed presentation of projects with technologies used
-- **Contact Form**: Integrated contact form for easy communication
-- **Tech Stack Display**: Visual representation of technical skills
-- **Timeline**: Interactive journey timeline
-- **Fun Facts**: Engaging statistics about coding journey
+This portfolio is a modern, minimalist, and highly customized website designed and developed by **Sourabh Kumar**. It showcases my professional journey, projects, coding stats, and personal story in a visually engaging and interactive way.
 
-## 🛠️ Technologies Used
+Every section, animation, and design choice is tailored to my own experience and style. The site is built to be fast, responsive, and visually striking, with a focus on clean code and a seamless user experience.
 
-### Frontend
-- HTML5
-- CSS3
-- JavaScript
-- GSAP (GreenSock Animation Platform)
-- Locomotive Scroll
-- Remix Icons
+---
 
-### Backend & Integration
-- EmailJS for contact form
-- GitHub Pages for hosting
+## ✨ Features
+- **Modern Hero Section:** Eye-catching introduction with animated text and a clean, dark theme.
+- **About Me:** Personal story, profile image, and fun facts.
+- **Projects:** Concise, interactive project cards with tech stack highlights.
+- **Coding Journey:** LeetCode/coding stats visualized in a unique section (hidden on mobile for best UX).
+- **Timeline:** My professional and learning milestones, presented with icons and subtle animations.
+- **Contact:** Simple, accessible contact form and social links.
+- **Fully Responsive:** Optimized for all devices, with special attention to mobile layouts.
+- **Minimalist Loader:** (If enabled) Modern, theme-matching loading animation.
+- **Custom Animations:** GSAP-powered scroll, hover, and text effects for a premium feel.
 
-## 🚀 Getting Started
+---
 
-1. Clone the repository:
-```bash
-git clone https://github.com/Sourabhkumar077/portfolio.git
-```
+## 🛠️ Tech Stack
+- **HTML5 & CSS3** (custom, no frameworks)
+- **JavaScript (ES6+)**
+- **GSAP** (GreenSock Animation Platform)
+- **Locomotive Scroll** (smooth scrolling)
+- **Remix Icon** (icon font)
+- **EmailJS** (contact form integration)
 
-2. Navigate to the project directory:
-```bash
-cd portfolio
-```
+---
 
-3. Open `index.html` in your browser or use a local server:
-```bash
-# Using Python
-python -m http.server 8000
+## 👤 Author & License
 
-# Using Node.js
-npx serve
-```
+**Sourabh Kumar**  
+[LinkedIn](https://www.linkedin.com/in/sourabh-kumar-mahuvar-b62404253/) | [GitHub](https://github.com/Sourabhkumar077)
 
-## 📁 Project Structure
+> This project is **not open source**. All code, content, and design are original and intended solely for my personal use. Please respect my work and do not copy or redistribute any part of this portfolio.
 
-```
-portfolio/
-├── index.html          # Main HTML file
-├── style.css          # Main stylesheet
-├── script.js          # Main JavaScript file
-├── locomotive.css     # Locomotive Scroll styles
-├── images/            # Image assets
-├── js/               # JavaScript modules
-└── README.md         # Project documentation
-```
+---
 
-## 🎨 Customization
+## 🙏 Final Note
 
-1. **Personal Information**: Update the content in `index.html` with your information
-2. **Styling**: Modify `style.css` to match your preferred color scheme and design
-3. **Projects**: Add your projects in the projects section
-4. **Contact Form**: Update EmailJS configuration in `script.js`
-
-## 📱 Responsive Design
-
-The portfolio is fully responsive and optimized for:
-- Desktop (1920px and below)
-- Tablet (1024px and below)
-- Mobile (768px and below)
-
-## 🔧 Performance Optimizations
-
-- Lazy loading of images
-- Optimized animations
-- Minified CSS and JavaScript
-- Efficient asset loading
-
-## 📫 Contact
-
-Feel free to reach out to me:
-- Email: sourabhkumar077@gmail.com
-- LinkedIn: [Sourabh Kumar](https://www.linkedin.com/in/sourabh-kumar-mahuvar-b62404253/)
-- GitHub: [Sourabhkumar077](https://github.com/Sourabhkumar077)
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgments
-
-- [GSAP](https://greensock.com/gsap/) for animations
-- [Locomotive Scroll](https://locomotivemtl.github.io/locomotive-scroll/) for smooth scrolling
-- [Remix Icons](https://remixicon.com/) for icons
-- [EmailJS](https://www.emailjs.com/) for contact form functionality 
+Thank you for visiting my portfolio! Every detail here is a result of my passion for technology, design, and continuous learning. If you have feedback or want to connect, feel free to reach out via the contact section. 
