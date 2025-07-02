@@ -46,4 +46,4 @@ Every section, animation, and design choice is tailored to my own experience and
 
 ## 🙏 Final Note
 
-Thank you for visiting my portfolio! Every detail here is a result of my passion for technology, design, and continuous learning. If you have feedback or want to connect, feel free to reach out via the contact section. 
+Thank you for visiting my portfolio! Every detail here is a result of my passion for technology, design, and continuous learning. If you have feedback or want to connect, feel free to reach out via the contact section OR Visiting My social profiles 
